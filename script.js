@@ -11,7 +11,7 @@ submit.addEventListener('click', function () {
   let place = weatherPLace.value;
 
 
-  fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&appid=` + weatherKey.key)
+  fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + weatherKey.key)
     .then(response => response.json())
     .then(data => {
       console.log(data);
