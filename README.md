@@ -27,6 +27,7 @@ Display a line graph of temperature over time using a library such as Chart.js
 Remember the user choice on subsequent visits
 Allow the user to compare the weather in two cities
 Use the API of https://unsplash.com/ to show a photo of the city they entered in the form.
+
 Instructions
 Create an account on OpenWeather, and generate a key
 Get the weather data using the native JS fetch() method (if you like, you can also check out axios)
