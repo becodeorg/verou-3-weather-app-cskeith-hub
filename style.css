@@ -2,9 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Spline Sans', sans-serif;
+    font-size: small;
 }
-.shadow, input, main{
+.shadow, input, section, #chart{
     box-shadow: 2px 2px black;
+    border:2px solid rgb(146, 125, 7);
     border-radius: 0.5rem;
     overflow: hidden;
 }
@@ -12,7 +15,6 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-family: 'Spline Sans', sans-serif;
     background-color: rgb(89, 139, 93);
 }
 header{
@@ -22,15 +24,26 @@ input{
     margin-top: 1rem;
     text-align: center;
 }
-
+#chart{
+    margin-left: 0.1rem;
+    background-color: blanchedalmond;
+}
 main{
     margin-top: 0.5rem;
     width: 16rem;
-    border:2px solid black;
     text-align: center;
 }
 
 section{
+    margin-top: 0.5rem;
     background-color: blanchedalmond;
+    border: 2px solid rgb(146, 125, 7);
     
+}
+h1{
+    margin-bottom: 0.3rem;
+}
+p{
+    margin-top: 0.3rem;
+    margin-bottom: 0.3rem;
 }

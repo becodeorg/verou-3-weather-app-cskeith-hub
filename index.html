@@ -20,35 +20,18 @@
 
         <form action="">
             <input type="text" id="weatherPlace" name="weatherPlace" value="" placeholder="Location"><br>
-            <input type="button" id="submit" value="   TRY   ">
+            <input type="button" id="submit" value="   Get Forecast   ">
         </form>
     </header>
 
     <main>
-        <section>
-            <div id="monday">
-                <h1>Monday</h1>
-                <h3>Date:</h3>
-                <div id="date">
-                    <p>
-                        Date
-                    </p>
-                </div>
-                <h3>Temperature:</h3>
-                <div id="temp">
-                    <p>
-                        Temp
-                    </p>
-                </div>
-                <h3>Wind:</h3>
-                <div id="wind">
-
-                </div>
-
-            </div>
-        </section>
+        <div id="chart">
+            <canvas id="myChart" width="200" height="200"></canvas>
+        </div>
     </main>
     <script type="module" src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 </body>
 
 </html>
