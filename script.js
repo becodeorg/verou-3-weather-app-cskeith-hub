@@ -14,11 +14,36 @@ submit.addEventListener('click', function () {
       cardInfo(data);
       // TODO: use specific weekdays
       // TODO: check forecast per hour
-      addCard(data.list[0], "today", "Today");
-      addCard(data.list[8], "tomorrow", "Tomorrow");
-      addCard(data.list[16], "", "");
-      addCard(data.list[24], "", "");
-      addCard(data.list[32], "", "");
+      // TODO: use JS date system to get the name of the day
+
+      const today = new Date();
+      const newDay = new Date();
+      newDay.setDate(newDay.getDate() + 1);
+      const newDay1 = new Date();
+      newDay1.setDate(newDay1.getDate() + 2);
+      const newDay2 = new Date();
+      newDay2.setDate(newDay2.getDate() + 3);
+      const newDay3 = new Date();
+      newDay3.setDate(newDay3.getDate() + 4);
+
+
+      const next4String = newDay3.toLocaleDateString("en-UK", { weekday: 'long' });
+
+      const next3String = newDay2.toLocaleDateString("en-UK", { weekday: 'long' });
+
+      const next2String = newDay1.toLocaleDateString("en-UK", { weekday: 'long' });
+
+      const next1String = newDay.toLocaleDateString("en-UK", { weekday: 'long' });
+      
+      const todayString = today.toLocaleDateString("en-UK", { weekday: 'long' });
+      
+      console.log(next3String);
+     
+      addCard(data.list[0], "today", todayString);
+      addCard(data.list[8], "tomorrow", next1String);
+      addCard(data.list[16], "", next2String);
+      addCard(data.list[24], "", next3String);
+      addCard(data.list[32], "", next4String);
     })
 
   const dayData = (data) => {
@@ -130,7 +155,7 @@ submit.addEventListener('click', function () {
     section.appendChild(day1);
 
     const mondayH1 = document.createElement("h1");
-    mondayH1.innerText = weekDay + ":";
+    mondayH1.innerText = weekDay ;
     day1.appendChild(mondayH1);
 
     const dateParagraph = document.createElement("p");
@@ -172,8 +197,6 @@ submit.addEventListener('click', function () {
     const windParagraph = document.createElement("p");
     windParagraph.innerHTML = dayData.wind.speed + "<span> Meters Per Second</span>";
     day1.append(windParagraph);
-
-    console.log(data.list[dayIndex]);
   }
 
 })
