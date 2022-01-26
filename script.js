@@ -9,16 +9,62 @@ submit.addEventListener('click', function () {
   fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + weatherKey.key)
     .then(response => response.json())
     .then(data => {
+      dayData(data);
       chart(data);
       cardInfo(data);
       card1(data);
-      
-      // card2(data);
-      // card3(data);
-      // card4(data);
-      // card5(data);
-      console.log(data);
+      card2(data);
+      card3(data);
+      card4(data);
+      card5(data);
     })
+
+  const dayData = (data) => {
+    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const d = new Date();
+    let day = weekday[d.getDay()];
+    let temp = "";
+    let weather = "";
+    let wind = "";
+    if (day === weekday[1]) {
+
+      day = data.list[0].dt_txt;
+      temp = data.list[0].main.temp + "<span>&#8451;</span>";
+      weather = data.list[0].weather[0].main;
+      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
+
+    } else if (day === weekday[2]) {
+
+      day = data.list[0].dt_txt;
+      temp = data.list[0].main.temp + "<span>&#8451;</span>";
+      weather = data.list[0].weather[0].main;
+      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
+
+    } else if (day === weekday[3]) {
+
+      day = data.list[0].dt_txt;
+      temp = data.list[0].main.temp + "<span>&#8451;</span>";
+      weather = data.list[0].weather[0].main;
+      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
+
+    } else if (day === weekday[4]) {
+
+      day = data.list[0].dt_txt;
+      temp = data.list[0].main.temp + "<span>&#8451;</span>";
+      weather = data.list[0].weather[0].main;
+      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
+
+    } else if (day === weekday[5]) {
+
+      day = data.list[0].dt_txt;
+      temp = data.list[0].main.temp + "<span>&#8451;</span>";
+      weather = data.list[0].weather[0].main;
+      wind = data.list[1].wind.speed + "<span> Meters Per Second</span>"
+
+    }
+    
+  }
+
 
   const chart = (data) => {
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -72,7 +118,7 @@ submit.addEventListener('click', function () {
     infoCard.appendChild(city);
   }
   const card1 = (data) => {
-    // for (let i = 0; i < data.list.length; *10 i++)
+
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
@@ -82,15 +128,15 @@ submit.addEventListener('click', function () {
     section.appendChild(day1);
 
     const mondayH1 = document.createElement("h1");
-    mondayH1.innerText = "Today";
+    mondayH1.innerText = "Today:";
     day1.appendChild(mondayH1);
 
     const dateParagraph = document.createElement("p");
     day1.appendChild(dateParagraph);
-    dateParagraph.innerHTML = data.list[0].dt_txt;
+    dateParagraph.innerHTML = day1;
 
     const tempH3 = document.createElement("h3");
-    tempH3.innerText = "Temperature";
+    tempH3.innerText = "Temperature:";
     day1.appendChild(tempH3);
 
     const temperature = document.createElement("div");
@@ -102,7 +148,7 @@ submit.addEventListener('click', function () {
     tempParagraph.innerHTML = data.list[0].main.temp + "<span>&#8451;</span>";
 
     const weatherH3 = document.createElement("h3");
-    weatherH3.innerText = "Weather";
+    weatherH3.innerText = "Weather:";
     day1.append(weatherH3);
 
     const weather = document.createElement("div");
@@ -114,7 +160,7 @@ submit.addEventListener('click', function () {
     day1.append(weatherParagraph);
 
     const windH3 = document.createElement("h3");
-    windH3.innerText = "Wind";
+    windH3.innerText = "Wind:";
     day1.append(windH3);
 
     const wind = document.createElement("div");
@@ -125,237 +171,237 @@ submit.addEventListener('click', function () {
     windParagraph.innerHTML = data.list[1].wind.speed + "<span> Meters Per Second</span>";
     day1.append(windParagraph);
   }
-  // const card2 = (data) => {
-  //   // for (let i = 0; i < data.list.length; *10 i++)
-  //   const main = document.querySelector("main");
-  //   const section = document.createElement("section");
-  //   main.appendChild(section);
+  const card2 = (data) => {
+    // for (let i = 0; i < data.list.length; *10 i++)
+    const main = document.querySelector("main");
+    const section = document.createElement("section");
+    main.appendChild(section);
 
-  //   const today = document.createElement("div");
-  //   today.className = "today";
-  //   section.appendChild(today);
+    const tomorrow = document.createElement("div");
+    tomorrow.className = "today";
+    section.appendChild(tomorrow);
 
-  //   const mondayH1 = document.createElement("h1");
-  //   mondayH1.innerText = "";
-  //   today.appendChild(mondayH1);
+    const mondayH1 = document.createElement("h1");
+    mondayH1.innerText = "Tomorrow";
+    tomorrow.appendChild(mondayH1);
 
-  //   const dateH3 = document.createElement("h3");
-  //   dateH3.innerText = "Date:";
-  //   today.appendChild(dateH3);
+    const dateH3 = document.createElement("h3");
+    dateH3.innerText = "Date:";
+    tomorrow.appendChild(dateH3);
 
-  //   const dateParagraph = document.createElement("p");
-  //   today.appendChild(dateParagraph);
-  //   dateParagraph.innerHTML = data.list[8].dt_txt;
+    const dateParagraph = document.createElement("p");
+    tomorrow.appendChild(dateParagraph);
+    dateParagraph.innerHTML = data.list[8].dt_txt;
 
-  //   const tempH3 = document.createElement("h3");
-  //   tempH3.innerText = "Temperature:";
-  //   today.appendChild(tempH3);
+    const tempH3 = document.createElement("h3");
+    tempH3.innerText = "Temperature:";
+    tomorrow.appendChild(tempH3);
 
-  //   const temperature = document.createElement("div");
-  //   temperature.className = "temperature";
-  //   today.append(temperature);
+    const temperature = document.createElement("div");
+    temperature.className = "temperature";
+    tomorrow.append(temperature);
 
-  //   const tempParagraph = document.createElement("p");
-  //   today.append(tempParagraph);
-  //   tempParagraph.innerHTML = data.list[8].main.temp + "<span>&#8451;</span>";
+    const tempParagraph = document.createElement("p");
+    tomorrow.append(tempParagraph);
+    tempParagraph.innerHTML = data.list[8].main.temp + "<span>&#8451;</span>";
 
-  //   const rainH3 = document.createElement("h3");
-  //   rainH3.innerText = "Rain:";
-  //   today.append(rainH3);
+    const rainH3 = document.createElement("h3");
+    rainH3.innerText = "Rain:";
+    tomorrow.append(rainH3);
 
-  //   const rain = document.createElement("div");
-  //   rain.className = "rain";
-  //   today.append(rain);
+    const rain = document.createElement("div");
+    rain.className = "rain";
+    tomorrow.append(rain);
 
-  //   const rainParagraph = document.createElement("p");
-  //   rainParagraph.innerHTML = data.list[8].weather[0].main;
-  //   today.append(rainParagraph);
+    const rainParagraph = document.createElement("p");
+    rainParagraph.innerHTML = data.list[8].weather[0].main;
+    tomorrow.append(rainParagraph);
 
-  //   const windH3 = document.createElement("h3");
-  //   windH3.innerText = "Wind:";
-  //   today.append(windH3);
+    const windH3 = document.createElement("h3");
+    windH3.innerText = "Wind:";
+    tomorrow.append(windH3);
 
-  //   const wind = document.createElement("div");
-  //   wind.className = "wind";
-  //   today.append(wind);
+    const wind = document.createElement("div");
+    wind.className = "wind";
+    tomorrow.append(wind);
 
-  //   const windParagraph = document.createElement("p");
-  //   windParagraph.innerHTML = data.list[8].wind.speed + "<span> Meters Per Second</span>";
-  //   today.append(windParagraph);
-  // }
-  // const card3 = (data) => {
-  //   // for (let i = 0; i < data.list.length; *10 i++)
-  //   const main = document.querySelector("main");
-  //   const section = document.createElement("section");
-  //   main.appendChild(section);
+    const windParagraph = document.createElement("p");
+    windParagraph.innerHTML = data.list[8].wind.speed + "<span> Meters Per Second</span>";
+    tomorrow.append(windParagraph);
+  }
+  const card3 = (data) => {
+    // for (let i = 0; i < data.list.length; *10 i++)
+    const main = document.querySelector("main");
+    const section = document.createElement("section");
+    main.appendChild(section);
 
-  //   const today = document.createElement("div");
-  //   today.className = "today";
-  //   section.appendChild(today);
+    const today = document.createElement("div");
+    today.className = "today";
+    section.appendChild(today);
 
-  //   const mondayH1 = document.createElement("h1");
-  //   mondayH1.innerText = "";
-  //   today.appendChild(mondayH1);
+    const mondayH1 = document.createElement("h1");
+    mondayH1.innerText = "";
+    today.appendChild(mondayH1);
 
-  //   const dateH3 = document.createElement("h3");
-  //   dateH3.innerText = "Date:";
-  //   today.appendChild(dateH3);
+    const dateH3 = document.createElement("h3");
+    dateH3.innerText = "Date:";
+    today.appendChild(dateH3);
 
-  //   const dateParagraph = document.createElement("p");
-  //   today.appendChild(dateParagraph);
-  //   dateParagraph.innerHTML = data.list[16].dt_txt;
+    const dateParagraph = document.createElement("p");
+    today.appendChild(dateParagraph);
+    dateParagraph.innerHTML = data.list[16].dt_txt;
 
-  //   const tempH3 = document.createElement("h3");
-  //   tempH3.innerText = "Temperature:";
-  //   today.appendChild(tempH3);
+    const tempH3 = document.createElement("h3");
+    tempH3.innerText = "Temperature:";
+    today.appendChild(tempH3);
 
-  //   const temperature = document.createElement("div");
-  //   temperature.className = "temperature";
-  //   today.append(temperature);
+    const temperature = document.createElement("div");
+    temperature.className = "temperature";
+    today.append(temperature);
 
-  //   const tempParagraph = document.createElement("p");
-  //   today.append(tempParagraph);
-  //   tempParagraph.innerHTML = data.list[16].main.temp + "<span>&#8451;</span>";
+    const tempParagraph = document.createElement("p");
+    today.append(tempParagraph);
+    tempParagraph.innerHTML = data.list[16].main.temp + "<span>&#8451;</span>";
 
-  //   const rainH3 = document.createElement("h3");
-  //   rainH3.innerText = "Rain:";
-  //   today.append(rainH3);
+    const rainH3 = document.createElement("h3");
+    rainH3.innerText = "Rain:";
+    today.append(rainH3);
 
-  //   const rain = document.createElement("div");
-  //   rain.className = "rain";
-  //   today.append(rain);
+    const rain = document.createElement("div");
+    rain.className = "rain";
+    today.append(rain);
 
-  //   const rainParagraph = document.createElement("p");
-  //   rainParagraph.innerHTML = data.list[16].weather[0].main;
-  //   today.append(rainParagraph);
+    const rainParagraph = document.createElement("p");
+    rainParagraph.innerHTML = data.list[16].weather[0].main;
+    today.append(rainParagraph);
 
-  //   const windH3 = document.createElement("h3");
-  //   windH3.innerText = "Wind:";
-  //   today.append(windH3);
+    const windH3 = document.createElement("h3");
+    windH3.innerText = "Wind:";
+    today.append(windH3);
 
-  //   const wind = document.createElement("div");
-  //   wind.className = "wind";
-  //   today.append(wind);
+    const wind = document.createElement("div");
+    wind.className = "wind";
+    today.append(wind);
 
-  //   const windParagraph = document.createElement("p");
-  //   windParagraph.innerHTML = data.list[16].wind.speed + "<span> Meters Per Second</span>";
-  //   today.append(windParagraph);
-  // }
-  // const card4 = (data) => {
-  //   // for (let i = 0; i < data.list.length; *10 i++)
-  //   const main = document.querySelector("main");
-  //   const section = document.createElement("section");
-  //   main.appendChild(section);
+    const windParagraph = document.createElement("p");
+    windParagraph.innerHTML = data.list[16].wind.speed + "<span> Meters Per Second</span>";
+    today.append(windParagraph);
+  }
+  const card4 = (data) => {
+    // for (let i = 0; i < data.list.length; *10 i++)
+    const main = document.querySelector("main");
+    const section = document.createElement("section");
+    main.appendChild(section);
 
-  //   const today = document.createElement("div");
-  //   today.className = "today";
-  //   section.appendChild(today);
+    const today = document.createElement("div");
+    today.className = "today";
+    section.appendChild(today);
 
-  //   const mondayH1 = document.createElement("h1");
-  //   mondayH1.innerText = "";
-  //   today.appendChild(mondayH1);
+    const mondayH1 = document.createElement("h1");
+    mondayH1.innerText = "";
+    today.appendChild(mondayH1);
 
-  //   const dateH3 = document.createElement("h3");
-  //   dateH3.innerText = "Date:";
-  //   today.appendChild(dateH3);
+    const dateH3 = document.createElement("h3");
+    dateH3.innerText = "Date:";
+    today.appendChild(dateH3);
 
-  //   const dateParagraph = document.createElement("p");
-  //   today.appendChild(dateParagraph);
-  //   dateParagraph.innerHTML = data.list[24].dt_txt;
+    const dateParagraph = document.createElement("p");
+    today.appendChild(dateParagraph);
+    dateParagraph.innerHTML = data.list[24].dt_txt;
 
-  //   const tempH3 = document.createElement("h3");
-  //   tempH3.innerText = "Temperature:";
-  //   today.appendChild(tempH3);
+    const tempH3 = document.createElement("h3");
+    tempH3.innerText = "Temperature:";
+    today.appendChild(tempH3);
 
-  //   const temperature = document.createElement("div");
-  //   temperature.className = "temperature";
-  //   today.append(temperature);
+    const temperature = document.createElement("div");
+    temperature.className = "temperature";
+    today.append(temperature);
 
-  //   const tempParagraph = document.createElement("p");
-  //   today.append(tempParagraph);
-  //   tempParagraph.innerHTML = data.list[24].main.temp + "<span>&#8451;</span>";
+    const tempParagraph = document.createElement("p");
+    today.append(tempParagraph);
+    tempParagraph.innerHTML = data.list[24].main.temp + "<span>&#8451;</span>";
 
-  //   const rainH3 = document.createElement("h3");
-  //   rainH3.innerText = "Rain:";
-  //   today.append(rainH3);
+    const rainH3 = document.createElement("h3");
+    rainH3.innerText = "Rain:";
+    today.append(rainH3);
 
-  //   const rain = document.createElement("div");
-  //   rain.className = "rain";
-  //   today.append(rain);
+    const rain = document.createElement("div");
+    rain.className = "rain";
+    today.append(rain);
 
-  //   const rainParagraph = document.createElement("p");
-  //   rainParagraph.innerHTML = data.list[24].weather[0].main;
-  //   today.append(rainParagraph);
+    const rainParagraph = document.createElement("p");
+    rainParagraph.innerHTML = data.list[24].weather[0].main;
+    today.append(rainParagraph);
 
-  //   const windH3 = document.createElement("h3");
-  //   windH3.innerText = "Wind:";
-  //   today.append(windH3);
+    const windH3 = document.createElement("h3");
+    windH3.innerText = "Wind:";
+    today.append(windH3);
 
-  //   const wind = document.createElement("div");
-  //   wind.className = "wind";
-  //   today.append(wind);
+    const wind = document.createElement("div");
+    wind.className = "wind";
+    today.append(wind);
 
-  //   const windParagraph = document.createElement("p");
-  //   windParagraph.innerHTML = data.list[24].wind.speed + "<span> Meters Per Second</span>";
-  //   today.append(windParagraph);
-  // }
-  // const card5 = (data) => {
-  //   // for (let i = 0; i < data.list.length; *10 i++)
-  //   const main = document.querySelector("main");
-  //   const section = document.createElement("section");
-  //   main.appendChild(section);
+    const windParagraph = document.createElement("p");
+    windParagraph.innerHTML = data.list[24].wind.speed + "<span> Meters Per Second</span>";
+    today.append(windParagraph);
+  }
+  const card5 = (data) => {
+    // for (let i = 0; i < data.list.length; *10 i++)
+    const main = document.querySelector("main");
+    const section = document.createElement("section");
+    main.appendChild(section);
 
-  //   const today = document.createElement("div");
-  //   today.className = "today";
-  //   section.appendChild(today);
+    const today = document.createElement("div");
+    today.className = "today";
+    section.appendChild(today);
 
-  //   const mondayH1 = document.createElement("h1");
-  //   mondayH1.innerText = "";
-  //   today.appendChild(mondayH1);
+    const mondayH1 = document.createElement("h1");
+    mondayH1.innerText = "";
+    today.appendChild(mondayH1);
 
-  //   const dateH3 = document.createElement("h3");
-  //   dateH3.innerText = "Date:";
-  //   today.appendChild(dateH3);
+    const dateH3 = document.createElement("h3");
+    dateH3.innerText = "Date:";
+    today.appendChild(dateH3);
 
-  //   const dateParagraph = document.createElement("p");
-  //   today.appendChild(dateParagraph);
-  //   dateParagraph.innerHTML = data.list[32].dt_txt;
+    const dateParagraph = document.createElement("p");
+    today.appendChild(dateParagraph);
+    dateParagraph.innerHTML = data.list[32].dt_txt;
 
-  //   const tempH3 = document.createElement("h3");
-  //   tempH3.innerText = "Temperature:";
-  //   today.appendChild(tempH3);
+    const tempH3 = document.createElement("h3");
+    tempH3.innerText = "Temperature:";
+    today.appendChild(tempH3);
 
-  //   const temperature = document.createElement("div");
-  //   temperature.className = "temperature";
-  //   today.append(temperature);
+    const temperature = document.createElement("div");
+    temperature.className = "temperature";
+    today.append(temperature);
 
-  //   const tempParagraph = document.createElement("p");
-  //   today.append(tempParagraph);
-  //   tempParagraph.innerHTML = data.list[32].main.temp + "<span>&#8451;</span>";
+    const tempParagraph = document.createElement("p");
+    today.append(tempParagraph);
+    tempParagraph.innerHTML = data.list[32].main.temp + "<span>&#8451;</span>";
 
-  //   const rainH3 = document.createElement("h3");
-  //   rainH3.innerText = "Rain:";
-  //   today.append(rainH3);
+    const rainH3 = document.createElement("h3");
+    rainH3.innerText = "Rain:";
+    today.append(rainH3);
 
-  //   const rain = document.createElement("div");
-  //   rain.className = "rain";
-  //   today.append(rain);
+    const rain = document.createElement("div");
+    rain.className = "rain";
+    today.append(rain);
 
-  //   const rainParagraph = document.createElement("p");
-  //   rainParagraph.innerHTML = data.list[32].weather[0].main;
-  //   today.append(rainParagraph);
+    const rainParagraph = document.createElement("p");
+    rainParagraph.innerHTML = data.list[32].weather[0].main;
+    today.append(rainParagraph);
 
-  //   const windH3 = document.createElement("h3");
-  //   windH3.innerText = "Wind:";
-  //   today.append(windH3);
+    const windH3 = document.createElement("h3");
+    windH3.innerText = "Wind:";
+    today.append(windH3);
 
-  //   const wind = document.createElement("div");
-  //   wind.className = "wind";
-  //   today.append(wind);
+    const wind = document.createElement("div");
+    wind.className = "wind";
+    today.append(wind);
 
-  //   const windParagraph = document.createElement("p");
-  //   windParagraph.innerHTML = data.list[32].wind.speed + "<span> Meters Per Second</span>";
-  //   today.append(windParagraph);
-  // }
+    const windParagraph = document.createElement("p");
+    windParagraph.innerHTML = data.list[32].wind.speed + "<span> Meters Per Second</span>";
+    today.append(windParagraph);
+  }
 
 })
