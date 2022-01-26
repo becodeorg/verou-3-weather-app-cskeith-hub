@@ -13,11 +13,12 @@ submit.addEventListener('click', function () {
       chart(data);
       cardInfo(data);
       // TODO: use specific weekdays
-      addCard(data, "today", "Today", 0);
-      addCard(data, "tomorrow", "Tomorrow", 1);
-      addCard(data, "", "", 2);
-      addCard(data, "", "", 3);
-      addCard(data, "", "", 4);
+      // TODO: check forecast per hour
+      addCard(data.list[0], "today", "Today");
+      addCard(data.list[8], "tomorrow", "Tomorrow");
+      addCard(data.list[16], "", "");
+      addCard(data.list[24], "", "");
+      addCard(data.list[32], "", "");
     })
 
   const dayData = (data) => {
@@ -119,7 +120,7 @@ submit.addEventListener('click', function () {
     infoCard.appendChild(city);
   }
 
-  const addCard = (data, style, weekDay, dayIndex) => {
+  const addCard = (dayData, style, weekDay, dayIndex) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
@@ -146,7 +147,7 @@ submit.addEventListener('click', function () {
 
     const tempParagraph = document.createElement("p");
     day1.append(tempParagraph);
-    tempParagraph.innerHTML = data.list[dayIndex].main.temp + "<span>&#8451;</span>";
+    tempParagraph.innerHTML = dayData.main.temp + "<span>&#8451;</span>";
 
     const weatherH3 = document.createElement("h3");
     weatherH3.innerText = "Weather:";
@@ -157,7 +158,7 @@ submit.addEventListener('click', function () {
     day1.append(weather);
 
     const weatherParagraph = document.createElement("p");
-    weatherParagraph.innerHTML = data.list[dayIndex].weather[0].main;
+    weatherParagraph.innerHTML = dayData.weather[0].main;
     day1.append(weatherParagraph);
 
     const windH3 = document.createElement("h3");
@@ -169,8 +170,10 @@ submit.addEventListener('click', function () {
     day1.append(wind);
 
     const windParagraph = document.createElement("p");
-    windParagraph.innerHTML = data.list[dayIndex].wind.speed + "<span> Meters Per Second</span>";
+    windParagraph.innerHTML = dayData.wind.speed + "<span> Meters Per Second</span>";
     day1.append(windParagraph);
+
+    console.log(data.list[dayIndex]);
   }
 
 })
