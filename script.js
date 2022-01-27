@@ -1,5 +1,7 @@
 import weatherKey from "./config.js";
 
+const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
 
@@ -9,96 +11,28 @@ submit.addEventListener('click', function () {
   fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + weatherKey.key)
     .then(response => response.json())
     .then(data => {
-      dayData(data);
-      chart(data);
+      let everyDay = [];
+      for (let i = 0; i < 5; i++) {
+        let day = new Date().getDay();
+        console.log(day)
+        everyDay.push(weekDay[(day+i) % 7]);
+      }
+      chart(data, everyDay);
       cardInfo(data);
-      // TODO: use specific weekdays
       // TODO: check forecast per hour
-      // TODO: use JS date system to get the name of the day
-
-      const today = new Date();
-      const newDay = new Date();
-      newDay.setDate(newDay.getDate() + 1);
-      const newDay1 = new Date();
-      newDay1.setDate(newDay1.getDate() + 2);
-      const newDay2 = new Date();
-      newDay2.setDate(newDay2.getDate() + 3);
-      const newDay3 = new Date();
-      newDay3.setDate(newDay3.getDate() + 4);
-
-
-      const next4String = newDay3.toLocaleDateString("en-UK", { weekday: 'long' });
-
-      const next3String = newDay2.toLocaleDateString("en-UK", { weekday: 'long' });
-
-      const next2String = newDay1.toLocaleDateString("en-UK", { weekday: 'long' });
-
-      const next1String = newDay.toLocaleDateString("en-UK", { weekday: 'long' });
-      
-      const todayString = today.toLocaleDateString("en-UK", { weekday: 'long' });
-      
-      console.log(next3String);
-     
-      addCard(data.list[0], "today", todayString);
-      addCard(data.list[8], "tomorrow", next1String);
-      addCard(data.list[16], "", next2String);
-      addCard(data.list[24], "", next3String);
-      addCard(data.list[32], "", next4String);
+      addCard(data.list[0], "", everyDay[0]);
+      addCard(data.list[8], "", everyDay[1]);
+      addCard(data.list[16], "", everyDay[2]);
+      addCard(data.list[24], "", everyDay[3]);
+      addCard(data.list[32], "", everyDay[4]);
     })
 
-  const dayData = (data) => {
-    const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const d = new Date();
-    let day = weekday[d.getDay()];
-    let temp = "";
-    let weather = "";
-    let wind = "";
-    if (day === weekday[1]) {
-
-      day = data.list[0].dt_txt;
-      temp = data.list[0].main.temp + "<span>&#8451;</span>";
-      weather = data.list[0].weather[0].main;
-      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
-
-    } else if (day === weekday[2]) {
-
-      day = data.list[0].dt_txt;
-      temp = data.list[0].main.temp + "<span>&#8451;</span>";
-      weather = data.list[0].weather[0].main;
-      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
-
-    } else if (day === weekday[3]) {
-
-      day = data.list[0].dt_txt;
-      temp = data.list[0].main.temp + "<span>&#8451;</span>";
-      weather = data.list[0].weather[0].main;
-      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
-
-    } else if (day === weekday[4]) {
-
-      day = data.list[0].dt_txt;
-      temp = data.list[0].main.temp + "<span>&#8451;</span>";
-      weather = data.list[0].weather[0].main;
-      wind = data.list[0].wind.speed + "<span> Meters Per Second</span>"
-
-    } else if (day === weekday[5]) {
-
-      day = data.list[0].dt_txt;
-      temp = data.list[0].main.temp + "<span>&#8451;</span>";
-      weather = data.list[0].weather[0].main;
-      wind = data.list[1].wind.speed + "<span> Meters Per Second</span>"
-
-    }
-
-  }
-
-
-  const chart = (data) => {
+  const chart = (data, everyDay) => {
     const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx, {
+    const myChart = new Chart(ctx,  {
       type: 'bar',
       data: {
-        labels: ["Day1", "Day2", "Day3", "Day4", "Day5"],
+        labels: [everyDay[0], everyDay[1], everyDay[2], everyDay[3], everyDay[4]],
         datasets: [{
           label: 'Temperature',
           data: [data.list[0].main.temp, data.list[8].main.temp, data.list[16].main.temp, data.list[24].main.temp, data.list[32].main.temp, ],
@@ -127,9 +61,8 @@ submit.addEventListener('click', function () {
         }
       }
     });
-
   }
-  // TODO  loop for html card
+
   const cardInfo = (data) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
@@ -145,7 +78,7 @@ submit.addEventListener('click', function () {
     infoCard.appendChild(city);
   }
 
-  const addCard = (dayData, style, weekDay, dayIndex) => {
+  const addCard = (data, style, weekDay) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
@@ -155,12 +88,12 @@ submit.addEventListener('click', function () {
     section.appendChild(day1);
 
     const mondayH1 = document.createElement("h1");
-    mondayH1.innerText = weekDay ;
+    mondayH1.innerText = weekDay;
     day1.appendChild(mondayH1);
 
     const dateParagraph = document.createElement("p");
     day1.appendChild(dateParagraph);
-    dateParagraph.innerHTML = day1;
+    dateParagraph.innerHTML = data.dt_txt;
 
     const tempH3 = document.createElement("h3");
     tempH3.innerText = "Temperature:";
@@ -172,7 +105,7 @@ submit.addEventListener('click', function () {
 
     const tempParagraph = document.createElement("p");
     day1.append(tempParagraph);
-    tempParagraph.innerHTML = dayData.main.temp + "<span>&#8451;</span>";
+    tempParagraph.innerHTML = data.main.temp + "<span>&#8451;</span>";
 
     const weatherH3 = document.createElement("h3");
     weatherH3.innerText = "Weather:";
@@ -183,7 +116,7 @@ submit.addEventListener('click', function () {
     day1.append(weather);
 
     const weatherParagraph = document.createElement("p");
-    weatherParagraph.innerHTML = dayData.weather[0].main;
+    weatherParagraph.innerHTML = data.weather[0].main;
     day1.append(weatherParagraph);
 
     const windH3 = document.createElement("h3");
@@ -195,7 +128,7 @@ submit.addEventListener('click', function () {
     day1.append(wind);
 
     const windParagraph = document.createElement("p");
-    windParagraph.innerHTML = dayData.wind.speed + "<span> Meters Per Second</span>";
+    windParagraph.innerHTML = data.wind.speed + "<span> Meters Per Second</span>";
     day1.append(windParagraph);
   }
 
