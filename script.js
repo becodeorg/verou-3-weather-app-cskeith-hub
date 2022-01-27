@@ -1,14 +1,23 @@
-import weatherKey from "./config.js";
+import apiKey from "./config.js";
+
 
 const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
 
+
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
+  
 
-  fetch(`http://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + weatherKey.key)
+  fetch(`https://api.unsplash.com/photos/?client_id=` + apiKey.imageKey)
+    .then(response => response.json())
+    .then(image => {
+      console.log(image[0]);
+
+    })
+  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
     .then(response => response.json())
     .then(data => {
       let everyDay = [];
@@ -20,11 +29,9 @@ submit.addEventListener('click', function () {
       for (let i = 0; i < 24; i++) {
         let Hour = new Date().getHours();
         everyHour.push(hours[(Hour + i) % 24]);
-        console.log(everyHour);
       }
-
-
-      chart(data, everyDay);
+      console.log(data);
+      chart(data, everyDay, everyHour);
       cardInfo(data);
       addCard(data.list[0], "card", everyDay[0]);
       addCard(data.list[8], "card", everyDay[1]);
@@ -33,9 +40,7 @@ submit.addEventListener('click', function () {
       addCard(data.list[32], "card", everyDay[4]);
     })
 
-
-
-  const chart = (data, everyDay) => {
+  const chart = (data, everyDay, everyHour) => {
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
@@ -68,7 +73,7 @@ submit.addEventListener('click', function () {
           }
         }
       }
-      
+
     });
   }
 
