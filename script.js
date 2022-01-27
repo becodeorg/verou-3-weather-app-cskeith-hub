@@ -1,7 +1,7 @@
 import weatherKey from "./config.js";
 
 const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
+const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24];
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
 
@@ -16,14 +16,24 @@ submit.addEventListener('click', function () {
         let day = new Date().getDay();
         everyDay.push(weekDay[(day + i) % 7]);
       }
+      let everyHour = [];
+      for (let i = 0; i < 24; i++) {
+        let Hour = new Date().getHours();
+        everyHour.push(hours[(Hour + i) % 24]);
+        console.log(everyHour);
+      }
+
+
       chart(data, everyDay);
       cardInfo(data);
-      addCard(data.list[0], "", everyDay[0]);
-      addCard(data.list[8], "", everyDay[1]);
-      addCard(data.list[16], "", everyDay[2]);
-      addCard(data.list[24], "", everyDay[3]);
-      addCard(data.list[32], "", everyDay[4]);
+      addCard(data.list[0], "card", everyDay[0]);
+      addCard(data.list[8], "card", everyDay[1]);
+      addCard(data.list[16], "card", everyDay[2]);
+      addCard(data.list[24], "card", everyDay[3]);
+      addCard(data.list[32], "card", everyDay[4]);
     })
+
+
 
   const chart = (data, everyDay) => {
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -58,6 +68,7 @@ submit.addEventListener('click', function () {
           }
         }
       }
+      
     });
   }
 
@@ -126,7 +137,7 @@ submit.addEventListener('click', function () {
     day1.append(wind);
 
     const windParagraph = document.createElement("p");
-    windParagraph.innerHTML = data.wind.speed + "<span> Meters Per Second</span>";
+    windParagraph.innerHTML = data.wind.speed + "<span>MpS</span>";
     day1.append(windParagraph);
   }
 

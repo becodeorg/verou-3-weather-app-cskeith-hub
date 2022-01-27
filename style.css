@@ -76,8 +76,8 @@
         background-color: rgb(123, 187, 176);
     }
     header{
-        width: 33.6rem;
-        margin-right: 1.2rem;
+        width: 32.9rem;
+        margin-right: 2.1rem;
         text-align: center;
         text-justify:auto;
         background-color: blanchedalmond;
@@ -91,7 +91,7 @@
         text-align: center;
     }
     #chart{
-        width: 33.6rem;
+        width: 32.8rem;
         margin-left: 0.1rem;
         background-color: blanchedalmond;
         background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
@@ -109,11 +109,80 @@
     }
     
     section{
+        width: 10.6rem;
         margin: 0.2rem;
         margin-top: 0.5rem;
         background-color: blanchedalmond;
         border: 2px solid rgb(146, 125, 7);
+        
     }
+    
+    h1{
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    p{
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+}
+@media only screen and (min-width:769px) and (max-width: 1440px){
+    .shadow, input, section, #chart, header, footer{
+        box-shadow: 2px 2px black;
+        border:2px solid rgb(146, 125, 7);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    body{
+        width: 100vw;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(123, 187, 176);
+    }
+    header{
+        width: 100vw;
+        text-align: center;
+        text-justify:auto;
+        background-color: blanchedalmond;
+    }
+    input#weatherPlace{
+        background-color: blanchedalmond;
+    }
+    input{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    #chart{
+        width: 20vw;
+        height: 19.9vh;
+        margin-left: 0.1rem;
+        margin-top: 0.5rem;
+        background-color: blanchedalmond;
+        background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+    }
+    .infoCard{
+        width: 10.6rem;
+    }
+    main{
+        width: 100vw;
+        display: flex;
+        justify-content: center;
+        margin-top: 0.5rem;
+        text-align: center;
+    }
+    
+    section{
+        width: 10.6rem;
+        height: 15rem;
+        margin: 0.2rem;
+        margin-top: 0.5rem;
+        background-color: blanchedalmond;
+        border: 2px solid rgb(146, 125, 7);
+        
+    }
+    
     
     h1{
         margin-top: 1rem;
