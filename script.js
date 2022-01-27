@@ -9,17 +9,15 @@ const weatherPLace = document.getElementById("weatherPlace");
 
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
-  
 
   fetch(`https://api.unsplash.com/photos/?client_id=` + apiKey.imageKey)
-    .then(response => response.json())
-    .then(image => {
-      console.log(image[0]);
-
-    })
-  fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
+  .then(response => response.json())
+  .then(image => {
+    console.log(image[0].urls.raw);
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
     .then(response => response.json())
     .then(data => {
+     
       let everyDay = [];
       for (let i = 0; i < 5; i++) {
         let day = new Date().getDay();
@@ -32,13 +30,16 @@ submit.addEventListener('click', function () {
       }
       console.log(data);
       chart(data, everyDay, everyHour);
-      cardInfo(data);
+      cardInfo(data, image);
       addCard(data.list[0], "card", everyDay[0]);
       addCard(data.list[8], "card", everyDay[1]);
       addCard(data.list[16], "card", everyDay[2]);
       addCard(data.list[24], "card", everyDay[3]);
       addCard(data.list[32], "card", everyDay[4]);
     })
+  })
+
+ 
 
   const chart = (data, everyDay, everyHour) => {
     const ctx = document.getElementById('myChart').getContext('2d');
@@ -77,7 +78,7 @@ submit.addEventListener('click', function () {
     });
   }
 
-  const cardInfo = (data) => {
+  const cardInfo = (data, image) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
@@ -90,6 +91,11 @@ submit.addEventListener('click', function () {
     const city = document.createElement("p");
     city.innerText = data.city.country;
     infoCard.appendChild(city);
+    const cityImage = document.createElement("div");
+    cityImage.className = "cityImage";
+    cityImage.innerHTML = `<img src=${image[0].urls.raw} alt="pic" style="width:200px;height:200px">`;
+    infoCard.append(cityImage);
+
   }
 
   const addCard = (data, style, weekDay) => {
