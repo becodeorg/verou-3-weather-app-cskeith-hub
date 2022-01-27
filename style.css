@@ -6,54 +6,121 @@
     font-size: small;
     color: rgb(0, 0, 0);
 }
-.shadow, input, section, #chart, header, footer{
-    box-shadow: 2px 2px black;
-    border:2px solid rgb(146, 125, 7);
-    border-radius: 0.5rem;
-    overflow: hidden;
+@media only screen and (max-width:426px){
+    .shadow, input, section, #chart, header, footer{
+        box-shadow: 2px 2px black;
+        border:2px solid rgb(146, 125, 7);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(123, 187, 176);
+    }
+    header{
+        width: 16rem;
+        text-align: center;
+        text-justify:auto;
+        background-color: blanchedalmond;
+    }
+    input#weatherPlace{
+        background-color: blanchedalmond;
+    }
+    input{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    #chart{
+        margin-left: 0.1rem;
+        background-color: blanchedalmond;
+        background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+    }
+    main{
+        margin-top: 0.5rem;
+        width: 16rem;
+        text-align: center;
+    }
+    
+    section{
+        margin-top: 0.5rem;
+        background-color: blanchedalmond;
+        border: 2px solid rgb(146, 125, 7);
+    }
+    
+    h1{
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    p{
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
+    
+     
 }
-body{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-color: rgb(133, 160, 135);
+@media only screen and (min-width:426px) and (max-width: 769px){
+    .shadow, input, section, #chart, header, footer{
+        box-shadow: 2px 2px black;
+        border:2px solid rgb(146, 125, 7);
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+    body{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgb(123, 187, 176);
+    }
+    header{
+        width: 33.6rem;
+        margin-right: 1.2rem;
+        text-align: center;
+        text-justify:auto;
+        background-color: blanchedalmond;
+    }
+    input#weatherPlace{
+        background-color: blanchedalmond;
+    }
+    input{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    #chart{
+        width: 33.6rem;
+        margin-left: 0.1rem;
+        background-color: blanchedalmond;
+        background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+    }
+    .infoCard{
+        width: 10.6rem;
+    }
+    main{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        margin-top: 0.5rem;
+        width: 35rem;
+        text-align: center;
+    }
+    
+    section{
+        margin: 0.2rem;
+        margin-top: 0.5rem;
+        background-color: blanchedalmond;
+        border: 2px solid rgb(146, 125, 7);
+    }
+    
+    h1{
+        margin-top: 1rem;
+        margin-bottom: 0.3rem;
+    }
+    p{
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
+    }
 }
-header{
-    width: 100vw;
-    text-align: center;
-    text-justify:auto;
-}
-input#weatherPlace{
-    background-color: blanchedalmond;
-}
-input{
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    text-align: center;
-}
-#chart{
-    margin-left: 0.1rem;
-    background-color: blanchedalmond;
-    background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
-}
-main{
-    margin-top: 0.5rem;
-    width: 16rem;
-    text-align: center;
-}
-
-section{
-    margin-top: 0.5rem;
-    background-color: blanchedalmond;
-    border: 2px solid rgb(146, 125, 7);
-}
-
-h1{
-    margin-top: 1rem;
-    margin-bottom: 0.3rem;
-}
-p{
-    margin-top: 0.3rem;
-    margin-bottom: 0.3rem;
-}
-

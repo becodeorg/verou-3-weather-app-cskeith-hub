@@ -14,12 +14,10 @@ submit.addEventListener('click', function () {
       let everyDay = [];
       for (let i = 0; i < 5; i++) {
         let day = new Date().getDay();
-        console.log(day)
-        everyDay.push(weekDay[(day+i) % 7]);
+        everyDay.push(weekDay[(day + i) % 7]);
       }
       chart(data, everyDay);
       cardInfo(data);
-      // TODO: check forecast per hour
       addCard(data.list[0], "", everyDay[0]);
       addCard(data.list[8], "", everyDay[1]);
       addCard(data.list[16], "", everyDay[2]);
@@ -29,7 +27,7 @@ submit.addEventListener('click', function () {
 
   const chart = (data, everyDay) => {
     const ctx = document.getElementById('myChart').getContext('2d');
-    const myChart = new Chart(ctx,  {
+    const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
         labels: [everyDay[0], everyDay[1], everyDay[2], everyDay[3], everyDay[4]],
