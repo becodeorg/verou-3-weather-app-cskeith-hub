@@ -7,6 +7,8 @@ const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
 
 
+
+
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
 
@@ -98,10 +100,26 @@ submit.addEventListener('click', function () {
 
   }
 
-  const addCard = (data, style, weekDay) => {
+  const addCard = (data, style, weekDay,hoverEffects) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
+
+    function hoverEffects(cardSelected) {
+  cardSelected.onmouseover = function () {
+      cardSelected.style.transform = "scale(1.03, 1.03)";
+      cardSelected.style.zIndex = 100;
+      cardSelected.style.transition = "0.15s";
+      cardSelected.style.boxShadow = "0 0 0 9999px #000000b0";
+  };
+  cardSelected.onmouseout = function () {
+      cardSelected.style.transform = "scale(1, 1)";
+      cardSelected.style.zIndex = 0;
+      cardSelected.style.boxShadow = "0 0 0 9999px #00000000";
+  };
+}
+hoverEffects(section);
+
 
     const day1 = document.createElement("div");
     day1.className = style;
@@ -151,5 +169,6 @@ submit.addEventListener('click', function () {
     windParagraph.innerHTML = data.wind.speed + "<span>MpS</span>";
     day1.append(windParagraph);
   }
+  
 
 })

@@ -23,7 +23,6 @@
 
     body {
         width: 100vw;
-        height: 100vh;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -34,6 +33,7 @@
 
     header {
         width: 16rem;
+        margin-right: 0.1rem;
         text-align: center;
         text-justify: auto;
         background-color: #59bdbd;
@@ -133,7 +133,6 @@
 
     main {
         display: flex;
-        flex-direction: row;
         flex-wrap: wrap;
         margin-top: 0.5rem;
         width: 50rem;
@@ -204,20 +203,6 @@
         margin-bottom: 1rem;
         text-align: center;
     }
-
-    #chart {
-        width: 20vw;
-        height: 19.9vh;
-        margin-left: 0.1rem;
-        margin-top: 0.5rem;
-        background-color: blanchedalmond;
-        background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
-    }
-
-    .infoCard {
-        width: 10.6rem;
-    }
-
     main {
         width: 100vw;
         display: flex;
@@ -225,15 +210,22 @@
         margin-top: 0.5rem;
         text-align: center;
     }
+    #chart {
+        width: 50vw;
+        height: 33.3vh;
+        margin-left: 0.1rem;
+        margin-top: 0.5rem;
+        background-color: blanchedalmond;
+        background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+    }
 
     section {
-        width: 10.6rem;
-        height: 15rem;
+        width: 30.3rem;
+        height: 21rem;
         margin: 0.2rem;
         margin-top: 0.5rem;
         background-color: #59bdbd;
         border: 2px solid #373E40;
-
     }
 
 
