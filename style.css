@@ -2,15 +2,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Spline Sans', sans-serif;
+    font-family: 'Noto Sans', sans-serif;
     font-size: small;
-    color: rgb(0, 0, 0);
+    color: #B7D5D4;
 }
 @media only screen and (max-width:426px){
-    .shadow, input, section, #chart, header, footer{
+    .shadow, input,header,#chart, .infoCard,footer{
         box-shadow: 2px 2px black;
-        border:2px solid rgb(146, 125, 7);
-        border-radius: 0.5rem;
+        border:2px solid #373E40;
+        border-radius: 2px;
         overflow: hidden;
     }
     
@@ -18,16 +18,16 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        background-color: rgb(123, 187, 176);
+        background-color: #77878B;
     }
     header{
         width: 16rem;
         text-align: center;
         text-justify:auto;
-        background-color: blanchedalmond;
+        background-color: #305252;
     }
     input#weatherPlace{
-        background-color: blanchedalmond;
+        background-color: #373E40;
     }
     input{
         margin-top: 1rem;
@@ -47,8 +47,8 @@
     
     section{
         margin-top: 0.5rem;
-        background-color: blanchedalmond;
-        border: 2px solid rgb(146, 125, 7);
+        background-color: #305252;
+        border: 2px solid #373E40;
     }
     
     h1{

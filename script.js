@@ -10,10 +10,10 @@ const weatherPLace = document.getElementById("weatherPlace");
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
 
-  fetch(`https://api.unsplash.com/photos/?client_id=` + apiKey.imageKey)
+  fetch("https://api.unsplash.com/search/photos?query=" + place + "&client_id=" + apiKey.imageKey)
   .then(response => response.json())
   .then(image => {
-    console.log(image[0].urls.raw);
+    console.log(image);
     fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
     .then(response => response.json())
     .then(data => {
@@ -93,7 +93,7 @@ submit.addEventListener('click', function () {
     infoCard.appendChild(city);
     const cityImage = document.createElement("div");
     cityImage.className = "cityImage";
-    cityImage.innerHTML = `<img src=${image[0].urls.raw} alt="pic" style="width:200px;height:200px">`;
+    cityImage.innerHTML = `<img src=${image.results[0].urls.regular} alt="pic" style="width:200px;height:200px">`;
     infoCard.append(cityImage);
 
   }
