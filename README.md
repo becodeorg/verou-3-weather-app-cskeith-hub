@@ -53,4 +53,3 @@ Create an account on OpenWeather, and generate a key
 
 Get the weather data using the native JS fetch() method (if you like, you can also check out axios)
 
-“When the ass begins to bray, surely rain will come that day.” (Good luck!)

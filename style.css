@@ -7,6 +7,12 @@
     color: #1a1d1d;
 }
 
+.borders, .col, .row, input#weatherPlace, #submit{
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
+}
+
 @media only screen and (max-width:426px) {
 
     body {
@@ -21,16 +27,33 @@
 
 
     }
-
     header {
+        display: flex;
         width: 100vw;
         margin-right: 0.1rem;
         text-align: center;
         text-justify: auto;
-        background-color: #59bdbd;
-        border: 2px solid #373E40;
-        border-radius: 0.5rem;
-        overflow: hidden;
+        justify-content: center;
+    }
+    .col{
+        width: 15rem;
+        margin-top: 7rem;
+    }
+    .row{
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+    input#weatherPlace{
+
+    }
+    h1 {
+        margin-top: 0.4rem;
+        margin-bottom: 0.3rem;
+    }
+
+    p {
+        margin-top: 0.3rem;
+        margin-bottom: 0.3rem;
     }
 
     input#weatherPlace {
@@ -81,15 +104,6 @@
         overflow: hidden;
     }
 
-    h1 {
-        margin-top: 1rem;
-        margin-bottom: 0.3rem;
-    }
-
-    p {
-        margin-top: 0.3rem;
-        margin-bottom: 0.3rem;
-    }
 
     footer {
         width: 100vw;
