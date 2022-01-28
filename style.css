@@ -32,7 +32,7 @@
     }
 
     header {
-        width: 16rem;
+        width: 100vw;
         margin-right: 0.1rem;
         text-align: center;
         text-justify: auto;
@@ -78,6 +78,12 @@
         margin-bottom: 0.3rem;
     }
 
+    footer{
+        width: 100vw;
+        text-align: center;
+        background-color:#59bdbd ;
+        margin-top: 0.5rem;
+    }
 
 }
 
@@ -103,8 +109,7 @@
     }
 
     header {
-        width: 32.9rem;
-        margin-right: 2.1rem;
+        width: 100vw;
         text-align: center;
         text-justify: auto;
         background-color: #59bdbd;
@@ -147,7 +152,8 @@
         border: 2px solid #373E40;
 
     }
-    .infoCard{
+
+    .infoCard {
         width: auto;
         display: flex;
         flex-direction: column;
@@ -162,6 +168,12 @@
     p {
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
+    }
+    footer{
+        width: 100vw;
+        text-align: center;
+        background-color:#59bdbd ;
+        margin-top: 0.5rem;
     }
 }
 
@@ -203,6 +215,7 @@
         margin-bottom: 1rem;
         text-align: center;
     }
+
     main {
         width: 100vw;
         display: flex;
@@ -210,9 +223,10 @@
         margin-top: 0.5rem;
         text-align: center;
     }
+
     #chart {
         width: 50vw;
-        height: 33.3vh;
+        height: 40.3vh;
         margin-left: 0.1rem;
         margin-top: 0.5rem;
         background-color: blanchedalmond;
@@ -237,5 +251,11 @@
     p {
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
+    }
+    footer{
+        width: 100vw;
+        text-align: center;
+        background-color:#59bdbd ;
+        margin-top: 0.5rem;
     }
 }
