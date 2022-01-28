@@ -22,14 +22,14 @@ submit.addEventListener('click', function () {
             everyDay.push(weekDay[(day + i) % 7]);
           }
           console.log(data);
-          chart(data, everyDay, everyHour);
+          chart(data, everyDay);
           cardInfo(data, image);
           addCard(data.list[0], "card", everyDay[0]);
           addCard(data.list[8], "card", everyDay[1]);
           addCard(data.list[16], "card", everyDay[2]);
           addCard(data.list[24], "card", everyDay[3]);
           addCard(data.list[32], "card", everyDay[4]);
-
+          createCanvas();
 
         })
     })
@@ -69,6 +69,16 @@ submit.addEventListener('click', function () {
       }
 
     });
+  }
+  const createCanvas = (chart) => {
+    const main = document.querySelector("main");
+    const canvasDiv = document.createElement("div");
+    canvasDiv.className = "chart";
+    main.append(canvasDiv);
+    const canvas = document.createElement("canvas");
+    canvas.innerHTML = chart;
+    canvasDiv.append(canvas);
+    console.log(canvas);
   }
   const cardInfo = (data, image) => {
     const main = document.querySelector("main");
