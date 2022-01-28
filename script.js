@@ -1,49 +1,48 @@
 import apiKey from "./config.js";
 
-
 const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23,];
+
+const hours = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23];
+
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
-
-
-
 
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
 
   fetch("https://api.unsplash.com/search/photos?query=" + place + "&client_id=" + apiKey.imageKey)
-  .then(response => response.json())
-  .then(image => {
-    console.log(image);
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
     .then(response => response.json())
-    .then(data => {
-     
-      let everyDay = [];
-      for (let i = 0; i < 5; i++) {
-        let day = new Date().getDay();
-        everyDay.push(weekDay[(day + i) % 7]);
-      }
-      let everyHour = [];
-      for (let i = 0; i < 24; i++) {
-        let Hour = new Date().getHours();
-        everyHour.push(hours[(Hour + i) % 24]);
-      }
-      console.log(data);
-      chart(data, everyDay, everyHour);
-      cardInfo(data, image);
-      addCard(data.list[0], "card", everyDay[0]);
-      addCard(data.list[8], "card", everyDay[1]);
-      addCard(data.list[16], "card", everyDay[2]);
-      addCard(data.list[24], "card", everyDay[3]);
-      addCard(data.list[32], "card", everyDay[4]);
+    .then(image => {
+      console.log(image);
+      fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
+        .then(response => response.json())
+        .then(data => {
+
+          let everyDay = [];
+          for (let i = 0; i < 5; i++) {
+            let day = new Date().getDay();
+            everyDay.push(weekDay[(day + i) % 7]);
+          }
+
+          let everyHour = [];
+          for (let i = 0; i < 24; i++) {
+            let Hour = new Date().getHours();
+            everyHour.push(hours[(Hour + i) % 24]);
+          }
+          console.log(data);
+          chart(data, everyDay, everyHour);
+          cardInfo(data, image);
+          addCard(data.list[0], "card", everyDay[0]);
+          addCard(data.list[8], "card", everyDay[1]);
+          addCard(data.list[16], "card", everyDay[2]);
+          addCard(data.list[24], "card", everyDay[3]);
+          addCard(data.list[32], "card", everyDay[4]);
+
+
+        })
     })
-  })
 
- 
-
-  const chart = (data, everyDay, everyHour) => {
+  const chart = (data, everyDay) => {
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
@@ -79,7 +78,6 @@ submit.addEventListener('click', function () {
 
     });
   }
-
   const cardInfo = (data, image) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
@@ -95,30 +93,30 @@ submit.addEventListener('click', function () {
     infoCard.appendChild(city);
     const cityImage = document.createElement("div");
     cityImage.className = "cityImage";
-    cityImage.innerHTML = `<img src=${image.results[0].urls.regular} alt="pic" style="width:200px;height:200px">`;
+    cityImage.innerHTML = `<img src=${image.results[0].urls.regular} alt="City of" style="width:200px;height:200px">`;
     infoCard.append(cityImage);
 
   }
 
-  const addCard = (data, style, weekDay,hoverEffects) => {
+  const addCard = (data, style, weekDay, hoverEffects) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
 
     function hoverEffects(cardSelected) {
-  cardSelected.onmouseover = function () {
-      cardSelected.style.transform = "scale(1.03, 1.03)";
-      cardSelected.style.zIndex = 100;
-      cardSelected.style.transition = "0.15s";
-      cardSelected.style.boxShadow = "0 0 0 9999px #000000b0";
-  };
-  cardSelected.onmouseout = function () {
-      cardSelected.style.transform = "scale(1, 1)";
-      cardSelected.style.zIndex = 0;
-      cardSelected.style.boxShadow = "0 0 0 9999px #00000000";
-  };
-}
-hoverEffects(section);
+      cardSelected.onmouseover = function () {
+        cardSelected.style.transform = "scale(1.03, 1.03)";
+        cardSelected.style.zIndex = 100;
+        cardSelected.style.transition = "0.15s";
+        cardSelected.style.boxShadow = "0 0 0 9999px #000000b0";
+      };
+      cardSelected.onmouseout = function () {
+        cardSelected.style.transform = "scale(1, 1)";
+        cardSelected.style.zIndex = 0;
+        cardSelected.style.boxShadow = "0 0 0 9999px #00000000";
+      };
+    }
+    hoverEffects(section);
 
 
     const day1 = document.createElement("div");
@@ -145,6 +143,18 @@ hoverEffects(section);
     day1.append(tempParagraph);
     tempParagraph.innerHTML = data.main.temp + "<span>&#8451;</span>";
 
+    const feelTempH3 = document.createElement("h3");
+    feelTempH3.innerText = "Feeling Temperature:";
+    day1.appendChild(feelTempH3);
+
+    const feelTemp = document.createElement("div");
+    feelTemp.className = "feelTemp";
+    day1.append(feelTemp);
+
+    const feelTempParagraph = document.createElement("p");
+    day1.append(feelTempParagraph);
+    feelTempParagraph.innerHTML = data.main.feels_like + "<span>&#8451;</span>";
+
     const weatherH3 = document.createElement("h3");
     weatherH3.innerText = "Weather:";
     day1.append(weatherH3);
@@ -168,7 +178,19 @@ hoverEffects(section);
     const windParagraph = document.createElement("p");
     windParagraph.innerHTML = data.wind.speed + "<span>MpS</span>";
     day1.append(windParagraph);
+
+    const humidityH3 = document.createElement("h3");
+    humidityH3.innerText = "Humidity:";
+    day1.append(humidityH3);
+
+    const humidity = document.createElement("div");
+    humidity.className = "humidity";
+    day1.append(humidity);
+
+    const humidityParagraph = document.createElement("p");
+    humidityParagraph.innerHTML = data.main.humidity + "<span>%</span>";
+    day1.append(humidityParagraph);
   }
-  
+
 
 })

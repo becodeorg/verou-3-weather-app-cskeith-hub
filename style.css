@@ -9,24 +9,15 @@
 
 @media only screen and (max-width:426px) {
 
-    .shadow,
-    input,
-    section,
-    header,
-    #chart,
-    footer {
-        box-shadow: 2px 2px black;
-        border: 2px solid #373E40;
-        border-radius: 2px;
-        overflow: hidden;
-    }
-
     body {
         width: 100vw;
         display: flex;
         flex-direction: column;
         align-items: center;
         background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+
+        ;
 
 
     }
@@ -37,6 +28,9 @@
         text-align: center;
         text-justify: auto;
         background-color: #59bdbd;
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     input#weatherPlace {
@@ -54,6 +48,9 @@
         margin-right: 0.1rem;
         background-color: blanchedalmond;
         background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     main {
@@ -66,6 +63,22 @@
         margin-top: 0.5rem;
         background-color: #59bdbd;
         border: 2px solid #373E40;
+        background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .cityImage {
+        width: 14.6rem;
+        height: 15rem;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        margin-left: 0.6rem;
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     h1 {
@@ -78,29 +91,19 @@
         margin-bottom: 0.3rem;
     }
 
-    footer{
+    footer {
         width: 100vw;
         text-align: center;
-        background-color:#59bdbd ;
+        background-color: #59bdbd;
         margin-top: 0.5rem;
-    }
-
-}
-
-@media only screen and (min-width:426px) and (max-width: 769px) {
-
-    .shadow,
-    input,
-    #chart,
-    section,
-    header,
-    footer {
-        box-shadow: 2px 2px black;
         border: 2px solid #373E40;
         border-radius: 0.5rem;
         overflow: hidden;
     }
 
+}
+
+@media only screen and (min-width:426px) and (max-width: 769px) {
     body {
         display: flex;
         flex-direction: column;
@@ -113,6 +116,9 @@
         text-align: center;
         text-justify: auto;
         background-color: #59bdbd;
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     input#weatherPlace {
@@ -127,9 +133,12 @@
 
     #chart {
         width: 40.8rem;
-        margin-left: 3.3rem;
+        margin-left: 5rem;
         background-color: blanchedalmond;
         background-image: url(./photo-1505533542167-8c89838bb19e.jfif);
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 
     .infoCard {
@@ -147,9 +156,11 @@
     section {
         width: 16.6rem;
         margin-top: 0.5rem;
-        margin-left: 4.7rem;
+        margin-left: 5.8rem;
         background-color: #59bdbd;
         border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
 
     }
 
@@ -158,6 +169,14 @@
         display: flex;
         flex-direction: column;
         text-align: center;
+    }
+
+    .cityImage {
+        width: 15rem;
+        height: 15rem;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        margin-left: 0.5rem;
     }
 
     h1 {
@@ -169,11 +188,15 @@
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
     }
-    footer{
+
+    footer {
         width: 100vw;
         text-align: center;
-        background-color:#59bdbd ;
+        background-color: #59bdbd;
         margin-top: 0.5rem;
+        border: 2px solid #373E40;
+        border-radius: 0.5rem;
+        overflow: hidden;
     }
 }
 
@@ -182,10 +205,10 @@
     .shadow,
     input,
     section,
+    .cityImage,
     #chart,
     header,
     footer {
-        box-shadow: 2px 2px black;
         border: 2px solid #373E40;
         border-radius: 0.5rem;
         overflow: hidden;
@@ -197,6 +220,7 @@
         flex-direction: column;
         align-items: center;
         background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
     }
 
     header {
@@ -238,8 +262,16 @@
         height: 21rem;
         margin: 0.2rem;
         margin-top: 0.5rem;
-        background-color: #59bdbd;
-        border: 2px solid #373E40;
+        background-color: #0093E9;
+        background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+        
+    }
+    .cityImage{
+        width: 10rem;
+        height: 14rem;
+        object-fit: cover;
+        margin-bottom: 1rem;
+        margin-left: 1.5rem;
     }
 
 
@@ -252,10 +284,11 @@
         margin-top: 0.3rem;
         margin-bottom: 0.3rem;
     }
-    footer{
+
+    footer {
         width: 100vw;
         text-align: center;
-        background-color:#59bdbd ;
+        background-color: #59bdbd;
         margin-top: 0.5rem;
     }
 }
