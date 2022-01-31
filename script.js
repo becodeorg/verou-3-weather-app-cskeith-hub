@@ -21,14 +21,13 @@ const addEveryWeekDay = () => {
 }
 const dayLabel = addEveryWeekDay();
 
-const temperature = (tempdata) => {
-  console.log(tempdata);
+const temperature = (tempData) => {
   let everyDayTemperature = [
-    tempdata.list[0].main.temp,
-    tempdata.list[8].main.temp,
-    tempdata.list[16].main.temp,
-    tempdata.list[24].main.temp,
-    tempdata.list[32].main.temp
+    tempData.list[0].main.temp,
+    tempData.list[8].main.temp,
+    tempData.list[16].main.temp,
+    tempData.list[24].main.temp,
+    tempData.list[32].main.temp
   ]
   return everyDayTemperature;
 }
@@ -40,13 +39,10 @@ submit.addEventListener('click', function () {
   fetch("https://api.unsplash.com/search/photos?query=" + place + "&client_id=" + apiKey.imageKey)
     .then(response => response.json())
     .then(image => {
-      console.log(image);
       fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
         .then(response => response.json())
         .then(data => {
-          console.log(data);
           const dailyTemperature = temperature(data);
-          console.log(dailyTemperature);
           chart(data, dayLabel, dailyTemperature);
           cardInfo(data, image);
           addCard(data.list[0], "card", dayLabel[0]);
@@ -94,23 +90,36 @@ submit.addEventListener('click', function () {
     });
   }
 
+  const createDivElement = () =>{
+    const newDiv = document.createElement("div");
+    return newDiv;
+  }
+
+  const createParagraphElement = () =>{
+    const newParagraph = document.createElement("p");
+    return newParagraph;
+  }
+
   const cardInfo = (data, image) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
-    const infoCard = document.createElement("div");
+    
+    const infoCard = createDivElement();
     infoCard.className = "infoCard";
     section.appendChild(infoCard);
+
     const locationH1 = document.createElement("h1");
     locationH1.innerText = data.city.name;
     infoCard.appendChild(locationH1);
-    const city = document.createElement("p");
+    const city = createParagraphElement();
     city.innerText = data.city.country;
     infoCard.appendChild(city);
-    const cityImage = document.createElement("div");
+
+    const cityImage = createDivElement();
     cityImage.className = "cityImage";
     cityImage.innerHTML = `<img src=${image.results[0].urls.regular} alt="City of" style="width:200px;height:200px">`;
-    infoCard.append(cityImage);
+    infoCard.appendChild(cityImage);
 
   }
 
@@ -135,7 +144,7 @@ submit.addEventListener('click', function () {
     hoverEffects(section);
 
 
-    const day1 = document.createElement("div");
+    const day1 = createDivElement();
     day1.className = style;
     section.appendChild(day1);
 
@@ -143,7 +152,7 @@ submit.addEventListener('click', function () {
     mondayH1.innerText = addEveryWeekDay;
     day1.appendChild(mondayH1);
 
-    const dateParagraph = document.createElement("p");
+    const dateParagraph = createParagraphElement();
     day1.appendChild(dateParagraph);
     dateParagraph.innerHTML = data.dt_txt;
 
@@ -151,11 +160,11 @@ submit.addEventListener('click', function () {
     tempH3.innerText = "Temperature:";
     day1.appendChild(tempH3);
 
-    const temperature = document.createElement("div");
+    const temperature = createDivElement();
     temperature.className = "temperature";
     day1.append(temperature);
 
-    const tempParagraph = document.createElement("p");
+    const tempParagraph = createParagraphElement();
     day1.append(tempParagraph);
     tempParagraph.innerHTML = data.main.temp + "<span>&#8451;</span>";
 
@@ -163,11 +172,11 @@ submit.addEventListener('click', function () {
     feelTempH3.innerText = "Feeling Temperature:";
     day1.appendChild(feelTempH3);
 
-    const feelTemp = document.createElement("div");
+    const feelTemp = createDivElement();
     feelTemp.className = "feelTemp";
     day1.append(feelTemp);
 
-    const feelTempParagraph = document.createElement("p");
+    const feelTempParagraph = createParagraphElement();
     day1.append(feelTempParagraph);
     feelTempParagraph.innerHTML = data.main.feels_like + "<span>&#8451;</span>";
 
@@ -175,11 +184,11 @@ submit.addEventListener('click', function () {
     weatherH3.innerText = "Weather:";
     day1.append(weatherH3);
 
-    const weather = document.createElement("div");
+    const weather = createDivElement();
     weather.className = "weather";
     day1.append(weather);
 
-    const weatherParagraph = document.createElement("p");
+    const weatherParagraph = createParagraphElement();
     weatherParagraph.innerHTML = data.weather[0].main;
     day1.append(weatherParagraph);
 
@@ -187,11 +196,11 @@ submit.addEventListener('click', function () {
     windH3.innerText = "Wind:";
     day1.append(windH3);
 
-    const wind = document.createElement("div");
+    const wind = createDivElement();
     wind.className = "wind";
     day1.append(wind);
 
-    const windParagraph = document.createElement("p");
+    const windParagraph = createParagraphElement();
     windParagraph.innerHTML = data.wind.speed + "<span>MpS</span>";
     day1.append(windParagraph);
 
@@ -199,11 +208,11 @@ submit.addEventListener('click', function () {
     humidityH3.innerText = "Humidity:";
     day1.append(humidityH3);
 
-    const humidity = document.createElement("div");
+    const humidity = createDivElement();
     humidity.className = "humidity";
     day1.append(humidity);
 
-    const humidityParagraph = document.createElement("p");
+    const humidityParagraph = createParagraphElement();
     humidityParagraph.innerHTML = data.main.humidity + "<span>%</span>";
     day1.append(humidityParagraph);
   }
