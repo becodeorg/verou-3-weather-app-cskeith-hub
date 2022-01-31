@@ -1,9 +1,34 @@
 import apiKey from "./config.js";
 
-const weekDay = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
+
+
+
+const addEveryWeekDay = () => {
+  const weekDay = ["Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let everyDay = [];
+  for (let i = 0; i < 5; i++) {
+    let day = new Date().getDay();
+    everyDay.push(weekDay[(day + i) % 7]);
+    return everyDay;
+  }
+  
+  
+}
+console.log(addEveryWeekDay);
+
+
+
+
+
 
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
@@ -15,31 +40,23 @@ submit.addEventListener('click', function () {
       fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${place}&units=metric&appid=` + apiKey.weatherKey)
         .then(response => response.json())
         .then(data => {
-
-          let everyDay = [];
-          for (let i = 0; i < 5; i++) {
-            let day = new Date().getDay();
-            everyDay.push(weekDay[(day + i) % 7]);
-          }
           console.log(data);
-          chart(data, everyDay);
+          chart(data, addEveryWeekDay);
           cardInfo(data, image);
-          addCard(data.list[0], "card", everyDay[0]);
-          addCard(data.list[8], "card", everyDay[1]);
-          addCard(data.list[16], "card", everyDay[2]);
-          addCard(data.list[24], "card", everyDay[3]);
-          addCard(data.list[32], "card", everyDay[4]);
-          createCanvas();
-
+          addCard(data.list[0], "card", addEveryWeekDay);
+          addCard(data.list[8], "card", addEveryWeekDay[1]);
+          addCard(data.list[16], "card", addEveryWeekDay[2]);
+          addCard(data.list[24], "card", addEveryWeekDay[3]);
+          addCard(data.list[32], "card", addEveryWeekDay[4]);
         })
     })
 
-  const chart = (data, everyDay) => {
+  const chart = (data, addEveryWeekDay) => {
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [everyDay[0], everyDay[1], everyDay[2], everyDay[3], everyDay[4]],
+        labels: [addEveryWeekDay[0], addEveryWeekDay[1], addEveryWeekDay[2], addEveryWeekDay[3], addEveryWeekDay[4]],
         datasets: [{
           label: 'Temperature',
           data: [data.list[0].main.temp, data.list[8].main.temp, data.list[16].main.temp, data.list[24].main.temp, data.list[32].main.temp, ],
@@ -70,16 +87,7 @@ submit.addEventListener('click', function () {
 
     });
   }
-  const createCanvas = (chart) => {
-    const main = document.querySelector("main");
-    const canvasDiv = document.createElement("div");
-    canvasDiv.className = "chart";
-    main.append(canvasDiv);
-    const canvas = document.createElement("canvas");
-    canvas.innerHTML = chart;
-    canvasDiv.append(canvas);
-    console.log(canvas);
-  }
+
   const cardInfo = (data, image) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
@@ -100,7 +108,7 @@ submit.addEventListener('click', function () {
 
   }
 
-  const addCard = (data, style, weekDay, hoverEffects) => {
+  const addCard = (data, style, addEveryWeekDay, hoverEffects) => {
     const main = document.querySelector("main");
     const section = document.createElement("section");
     main.appendChild(section);
@@ -126,7 +134,7 @@ submit.addEventListener('click', function () {
     section.appendChild(day1);
 
     const mondayH1 = document.createElement("h1");
-    mondayH1.innerText = weekDay;
+    mondayH1.innerText = addEveryWeekDay;
     day1.appendChild(mondayH1);
 
     const dateParagraph = document.createElement("p");
