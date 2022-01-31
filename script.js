@@ -21,6 +21,18 @@ const addEveryWeekDay = () => {
 }
 const dayLabel = addEveryWeekDay();
 
+const temperature = (tempdata) => {
+  console.log(tempdata);
+  let everyDayTemperature = [
+    tempdata.list[0].main.temp,
+    tempdata.list[8].main.temp,
+    tempdata.list[16].main.temp,
+    tempdata.list[24].main.temp,
+    tempdata.list[32].main.temp
+  ]
+  return everyDayTemperature;
+}
+
 
 submit.addEventListener('click', function () {
   let place = weatherPLace.value;
@@ -33,7 +45,9 @@ submit.addEventListener('click', function () {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          chart(data, dayLabel);
+          const dailyTemperature = temperature(data);
+          console.log(dailyTemperature);
+          chart(data, dayLabel, dailyTemperature);
           cardInfo(data, image);
           addCard(data.list[0], "card", dayLabel[0]);
           addCard(data.list[8], "card", dayLabel[1]);
@@ -43,7 +57,7 @@ submit.addEventListener('click', function () {
         })
     })
 
-  const chart = (data, addEveryWeekDay) => {
+  const chart = (data, dayLabel,dailyTemperature) => {
     const ctx = document.getElementById('myChart').getContext('2d');
     const myChart = new Chart(ctx, {
       type: 'bar',
@@ -51,7 +65,7 @@ submit.addEventListener('click', function () {
         labels: dayLabel,
         datasets: [{
           label: 'Temperature',
-          data: [data.list[0].main.temp, data.list[8].main.temp, data.list[16].main.temp, data.list[24].main.temp, data.list[32].main.temp, ],
+          data: [dailyTemperature[0], dailyTemperature[1], dailyTemperature[2], dailyTemperature[3], dailyTemperature[4],],
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(255, 99, 132, 0.2)',
@@ -196,3 +210,4 @@ submit.addEventListener('click', function () {
 
 
 })
+
