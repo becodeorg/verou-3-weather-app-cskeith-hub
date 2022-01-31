@@ -3,8 +3,6 @@ import apiKey from "./config.js";
 const submit = document.getElementById("submit");
 const weatherPLace = document.getElementById("weatherPlace");
 
-
-
 const addEveryWeekDay = () => {
   const weekDay = ["Sunday",
     "Monday",
@@ -18,16 +16,10 @@ const addEveryWeekDay = () => {
   for (let i = 0; i < 5; i++) {
     let day = new Date().getDay();
     everyDay.push(weekDay[(day + i) % 7]);
-    return everyDay;
   }
-  
-  
+  return everyDay;
 }
-console.log(addEveryWeekDay);
-
-
-
-
+const dayLabel = addEveryWeekDay();
 
 
 submit.addEventListener('click', function () {
@@ -41,13 +33,13 @@ submit.addEventListener('click', function () {
         .then(response => response.json())
         .then(data => {
           console.log(data);
-          chart(data, addEveryWeekDay);
+          chart(data, dayLabel);
           cardInfo(data, image);
-          addCard(data.list[0], "card", addEveryWeekDay);
-          addCard(data.list[8], "card", addEveryWeekDay[1]);
-          addCard(data.list[16], "card", addEveryWeekDay[2]);
-          addCard(data.list[24], "card", addEveryWeekDay[3]);
-          addCard(data.list[32], "card", addEveryWeekDay[4]);
+          addCard(data.list[0], "card", dayLabel[0]);
+          addCard(data.list[8], "card", dayLabel[1]);
+          addCard(data.list[16], "card", dayLabel[2]);
+          addCard(data.list[24], "card", dayLabel[3]);
+          addCard(data.list[32], "card", dayLabel[4]);
         })
     })
 
@@ -56,7 +48,7 @@ submit.addEventListener('click', function () {
     const myChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: [addEveryWeekDay[0], addEveryWeekDay[1], addEveryWeekDay[2], addEveryWeekDay[3], addEveryWeekDay[4]],
+        labels: dayLabel,
         datasets: [{
           label: 'Temperature',
           data: [data.list[0].main.temp, data.list[8].main.temp, data.list[16].main.temp, data.list[24].main.temp, data.list[32].main.temp, ],
